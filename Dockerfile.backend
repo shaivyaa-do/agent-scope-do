@@ -1,0 +1,38 @@
+FROM python:3.11-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    REDIS_HOST=redis \
+    REDIS_PORT=6379 \
+    HOST=0.0.0.0 \
+    PORT=8001
+
+WORKDIR /app
+
+# Install system dependencies (including Node.js and npm for MCP tool support like playwright)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    git \
+    build-essential \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y --no-install-recommends nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy packaging metadata first for caching
+COPY pyproject.toml README.md ./
+COPY src/ ./src/
+
+# Install agentscope with full service dependencies
+RUN pip install --upgrade pip && \
+    pip install .[service,storage-redis,models,channel,vdb-qdrant,tools]
+
+# Copy the agent service code
+COPY examples/agent_service/ ./examples/agent_service/
+
+EXPOSE 8001
+
+WORKDIR /app/examples/agent_service
+
+CMD ["python", "main.py"]

@@ -1,0 +1,54 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: dataobserve-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - dataobserve-net
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: dataobserve-backend
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - HOST=0.0.0.0
+      - PORT=8001
+      # Optional tokens (can be set in .env file)
+      - CLAWHUB_API_TOKEN=${CLAWHUB_API_TOKEN:-}
+      - AMAP_API_KEY=${AMAP_API_KEY:-}
+    depends_on:
+      - redis
+    volumes:
+      - backend_workspaces:/app/examples/agent_service/workspaces
+    networks:
+      - dataobserve-net
+
+  frontend:
+    build:
+      context: ./examples/web_ui
+      dockerfile: Dockerfile
+    container_name: dataobserve-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - dataobserve-net
+
+networks:
+  dataobserve-net:
+    driver: bridge
+
+volumes:
+  redis_data:
+  backend_workspaces:
