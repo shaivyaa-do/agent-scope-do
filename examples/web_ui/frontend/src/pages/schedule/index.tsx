@@ -5,7 +5,6 @@ import * as React from 'react';
 import type { ScheduleEvent } from './event';
 import type { ScheduleRecord } from '@/api';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useSchedules } from '@/hooks/useSchedules';
 import { useTranslation } from '@/i18n/useI18n';
@@ -79,12 +78,12 @@ export function SchedulePage() {
 	};
 
 	return (
-		<div className="flex size-full p-2">
-			<main className="flex h-full min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-[22px] bg-card shadow-panel">
-				<div className="flex items-start justify-between gap-3 px-6 pt-5 pb-4">
+		<div className="flex size-full">
+			<main className="flex h-full min-h-0 min-w-0 flex-1 flex-col overflow-hidden bg-white rounded-2xl">
+				<div className="flex items-start justify-between gap-3 px-8 pt-7 pb-5">
 					<div>
-						<div className="text-2xl font-semibold">{t('common.schedule')}</div>
-						<div className="mt-1 text-sm text-muted-foreground">
+						<div className="text-[18px] font-semibold text-[rgba(24,24,27,0.9)]">{t('common.schedule')}</div>
+						<div className="mt-1.5 text-[13px] text-[rgba(24,24,27,0.5)]">
 							{t('schedule.subtitle')}
 						</div>
 					</div>
@@ -109,7 +108,6 @@ export function SchedulePage() {
 						</Tabs>
 					</div>
 				</div>
-				<Separator />
 
 				<div className="flex-1 overflow-hidden">
 					{viewMode === 'calendar' && (

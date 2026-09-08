@@ -165,7 +165,7 @@ export const PanelDock = ({ layout, panels, onClosePanel }: PanelDockProps) => {
 										)}
 
 										<ResizablePanel
-											className="rounded-[22px] bg-card shadow-panel"
+											className="bg-white rounded-2xl overflow-hidden"
 											minSize={PANEL_MIN_HEIGHT}
 										>
 											<Panel

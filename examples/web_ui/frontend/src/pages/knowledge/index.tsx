@@ -27,7 +27,6 @@ import {
 	EmptyMedia,
 	EmptyTitle,
 } from '@/components/ui/empty.tsx';
-import { Separator } from '@/components/ui/separator.tsx';
 import {
 	Sidebar,
 	SidebarContent,
@@ -90,8 +89,6 @@ function DetailPanel({ knowledgeBase, onTest }: DetailPanelProps) {
 					</Button>
 				</div>
 			</div>
-
-			<Separator className="shrink-0" />
 
 			{/* Configuration + documents */}
 			<div className="min-h-0 flex-1 overflow-y-auto p-[20px_18px_24px]">
@@ -226,13 +223,13 @@ export const KnowledgePage = () => {
 	};
 
 	return (
-		<div className="flex size-full p-2 gap-2">
-			<Sidebar collapsible="none" className="rounded-[22px]">
-				<SidebarHeader className={'flex flex-col p-[20px_18px_14px] gap-y-1'}>
-					<div className="text-xl font-medium tracking-[-0.02em] text-foreground">
+		<div className="flex size-full gap-3.5">
+			<Sidebar collapsible="none" className="w-72 shrink-0 bg-white rounded-2xl overflow-hidden">
+				<SidebarHeader className={'flex flex-col px-6 pt-7 pb-4 gap-y-1'}>
+					<div className="text-[18px] font-semibold tracking-[-0.02em] text-[rgba(24,24,27,0.9)]">
 						{t('common.knowledge')}
 					</div>
-					<div className="text-text-tertiary text-xs">{t('knowledge.subtitle')}</div>
+					<div className="mt-0.5 text-[13px] text-[rgba(24,24,27,0.5)]">{t('knowledge.subtitle')}</div>
 				</SidebarHeader>
 				<SidebarContent>
 					<SidebarGroup className="mt-6 px-2 py-0">
@@ -336,7 +333,7 @@ export const KnowledgePage = () => {
 				</SidebarContent>
 				<SidebarFooter />
 			</Sidebar>
-			<main className="flex-1 min-h-0 overflow-hidden rounded-[22px] bg-card shadow-panel">
+			<main className="flex-1 min-h-0 overflow-hidden bg-white rounded-2xl">
 				<DetailPanel knowledgeBase={selectedKb} onTest={() => setTestOpen(true)} />
 			</main>
 			<CreateKnowledgeBaseDialog

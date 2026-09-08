@@ -170,7 +170,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=8000,
+        port=8001,
         # Hot reload forces a SelectorEventLoop on Windows, which cannot
         # spawn the subprocesses that the builtin tools rely on
         reload=sys.platform != "win32",

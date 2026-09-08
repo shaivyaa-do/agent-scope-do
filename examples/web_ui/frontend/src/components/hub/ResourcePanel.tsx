@@ -2,7 +2,6 @@ import { Search } from 'lucide-react';
 
 import { Input } from '@/components/ui/input.tsx';
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui/item.tsx';
-import { Separator } from '@/components/ui/separator.tsx';
 
 interface Props {
 	title: string;
@@ -48,8 +47,6 @@ export function ResourcePanel({ title, description, icon, search, children }: Pr
 					</div>
 				)}
 			</div>
-
-			<Separator className="shrink-0" />
 
 			{/* min-h-0 so the flex child may shrink below its content height —
 			    without it the body grows and the whole page scrolls instead.

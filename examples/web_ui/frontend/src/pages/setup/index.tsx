@@ -97,7 +97,14 @@ export const SetupPage = ({ onComplete, className }: Props) => {
 
 	return (
 		<div className="flex items-center justify-center h-full">
-			<div className={cn('flex flex-col gap-6 w-full max-w-sm', className)}>
+			<div className={cn('flex flex-col gap-5 w-full max-w-sm', className)}>
+				<div className="flex justify-center py-2">
+					<img
+						src="/dataobserve.png"
+						alt="DataObserve"
+						className="h-9 w-auto object-contain"
+					/>
+				</div>
 				<Card>
 					<CardHeader>
 						<CardTitle>{t('setup.title')}</CardTitle>

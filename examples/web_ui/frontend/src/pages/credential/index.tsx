@@ -15,7 +15,6 @@ import { EditCredentialDialog } from '@/components/dialog/EditCredentialDialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from '@/components/ui/empty';
-import { Separator } from '@/components/ui/separator';
 import {
 	Sidebar,
 	SidebarContent,
@@ -338,8 +337,6 @@ function DetailPanel({ credential, schema, onEdit, onDelete }: DetailPanelProps)
 				</div>
 			</div>
 
-			<Separator className="shrink-0" />
-
 			<div className="min-h-0 flex-1 overflow-y-auto">
 				{/* Fields */}
 				<div className="flex flex-col gap-y-3 p-[20px_18px_0]">
@@ -515,14 +512,14 @@ export const CredentialPage = () => {
 	}, [selectedCredential, remove]);
 
 	return (
-		<div className="flex h-full w-full p-2 gap-2">
+		<div className="flex h-full w-full gap-3.5">
 			{/* Left sidebar */}
-			<Sidebar collapsible="none" className="rounded-[22px]">
-				<SidebarHeader className={'flex flex-col p-[20px_18px_14px] gap-y-1'}>
-					<div className="text-xl font-medium tracking-[-0.02em] text-foreground">
+			<Sidebar collapsible="none" className="w-72 shrink-0 bg-white rounded-2xl overflow-hidden">
+				<SidebarHeader className={'flex flex-col px-6 pt-7 pb-4 gap-y-1'}>
+					<div className="text-[18px] font-semibold tracking-[-0.02em] text-[rgba(24,24,27,0.9)]">
 						{t('common.credential')}
 					</div>
-					<div className="text-text-tertiary text-xs">{t('credential.subtitle')}</div>
+					<div className="mt-0.5 text-[13px] text-[rgba(24,24,27,0.5)]">{t('credential.subtitle')}</div>
 				</SidebarHeader>
 				{/*<Separator />*/}
 				<SidebarContent>
@@ -573,19 +570,6 @@ export const CredentialPage = () => {
 																		<span className="min-w-0 flex-1 truncate">
 																			{name}
 																		</span>
-																		{!rec.editable && (
-																			<Badge
-																				variant="secondary"
-																				className="text-[10px] px-1 py-0"
-																				title={t(
-																					'common.readOnlyTooltip',
-																				)}
-																			>
-																				{t(
-																					'common.readOnly',
-																				)}
-																			</Badge>
-																		)}
 																	</SidebarMenuButton>
 																</SidebarMenuItem>
 															);
@@ -625,7 +609,7 @@ export const CredentialPage = () => {
 			</Sidebar>
 
 			{/* Right detail */}
-			<main className="flex-1 min-h-0 overflow-hidden rounded-[22px] bg-card shadow-panel">
+			<main className="flex-1 min-h-0 overflow-hidden bg-white rounded-2xl">
 				{selectedCredential ? (
 					<DetailPanel
 						credential={selectedCredential}

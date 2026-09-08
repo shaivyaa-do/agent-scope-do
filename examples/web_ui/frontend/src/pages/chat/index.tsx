@@ -230,7 +230,7 @@ const ChatPageInner = () => {
 	const earlierSessions = sessions.filter((sess) => !isToday(new Date(sess.session.created_at)));
 
 	return (
-		<div className="flex h-full w-full p-2 gap-2">
+		<div className="flex h-full w-full gap-3.5">
 			{/*
 			 * Desktop stays `collapsible="none"` so the session list sits in
 			 * normal flow beside the app rail (AppSidebar). Mobile switches to
@@ -238,7 +238,7 @@ const ChatPageInner = () => {
 			 * (the drawer we want) — instead of the desktop `fixed left-0`
 			 * container, which would otherwise cover the app rail.
 			 */}
-			<Sidebar collapsible={isMobile ? 'offcanvas' : 'none'} className="rounded-[22px]">
+			<Sidebar collapsible={isMobile ? 'offcanvas' : 'none'} className="w-72 shrink-0 bg-white rounded-2xl overflow-hidden">
 				{/* Scrolling moves down to the session list below, so the
 				    agent picker and the new-session button stay put. */}
 				<SidebarContent className="my-2 overflow-hidden">

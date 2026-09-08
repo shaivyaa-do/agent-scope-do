@@ -20,7 +20,6 @@ import {
 	ItemTitle,
 } from '@/components/ui/item';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
-import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Switch } from '@/components/ui/switch';
 import { useAgents } from '@/hooks/useAgents';
@@ -110,7 +109,7 @@ function ChannelTypeCard({ type, onPick }: { type: ChannelTypeSchema; onPick: ()
 	return (
 		<button
 			onClick={onPick}
-			className="group flex items-start gap-3 rounded-xl border bg-card p-4 text-left shadow-panel transition hover:border-ring/40"
+			className="group flex items-start gap-3 rounded-xl border-0 bg-[#f4f4f5]/60 hover:bg-[#f4f4f5] p-4 text-left transition"
 		>
 			<TypeAvatar type={type} className="size-10 rounded-lg" />
 			<div className="min-w-0 flex-1">
@@ -195,19 +194,18 @@ export function ChannelPage() {
 	const selected = channels.find((c) => c.id === selectedId) ?? null;
 
 	return (
-		<div className="flex size-full p-2">
-			<ResizablePanelGroup orientation="horizontal">
+		<div className="flex size-full gap-3.5">
+			<ResizablePanelGroup orientation="horizontal" className="gap-3.5">
 				<ResizablePanel minSize="24rem">
-					<main className="flex h-full min-h-0 min-w-0 flex-col overflow-hidden rounded-[22px] bg-card shadow-panel">
-						<div className="px-6 pt-5 pb-4">
-							<div className="text-2xl font-semibold">{t('channel.title')}</div>
-							<div className="mt-1 text-sm text-muted-foreground">
+					<main className="flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-white rounded-2xl">
+						<div className="px-8 pt-7 pb-5">
+							<div className="text-[18px] font-semibold text-[rgba(24,24,27,0.9)]">{t('channel.title')}</div>
+							<div className="mt-1.5 text-[13px] text-[rgba(24,24,27,0.5)]">
 								{t('channel.subtitle')}
 							</div>
 						</div>
-						<Separator />
 
-						<div className="flex-1 overflow-y-auto px-6 py-6">
+						<div className="flex-1 overflow-y-auto px-8 py-2">
 							{loading ? (
 								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
 									{Array.from({ length: 4 }).map((_, i) => (
@@ -259,12 +257,11 @@ export function ChannelPage() {
 										</section>
 									)}
 
-									<div className="my-8 flex items-center gap-4">
-										<span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+									<div className="mt-8 mb-4 flex items-center gap-2">
+										<span className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
 											<Plus className="size-3.5 text-primary" />
 											{t('channel.sectionAdd')}
 										</span>
-										<div className="flex-1 border-t border-dashed" />
 									</div>
 
 									<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
